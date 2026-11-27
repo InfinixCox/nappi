@@ -1,0 +1,21 @@
+<form class="formulario" (ngSubmit)="enviar()">
+  <h2>Nueva categoría</h2>
+
+  <label for="cat-nombre">Nombre</label>
+  <input id="cat-nombre" name="nombre" type="text" placeholder="Ej: Combos"
+    [ngModel]="nombre()" (ngModelChange)="nombre.set($event)">
+
+  <label for="cat-padre">Dentro de</label>
+  <select id="cat-padre" name="padre" [ngModel]="padreId()" (ngModelChange)="padreId.set(+$event)">
+    <option [value]="0">Ninguna (categoría principal)</option>
+    @for (categoria of principales; track categoria.id) {
+      <option [value]="categoria.id">{{ categoria.nombre }}</option>
+    }
+  </select>
+
+  <button type="submit" class="boton-principal">Crear categoría</button>
+
+  @if (mensaje() !== '') {
+    <p class="aviso-error">{{ mensaje() }}</p>
+  }
+</form>

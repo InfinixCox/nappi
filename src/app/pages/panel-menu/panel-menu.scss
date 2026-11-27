@@ -1,0 +1,66 @@
+@use '../../../styles/variables' as *;
+
+.distribucion {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  align-items: start;
+  gap: $espacio * 1.5;
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  gap: $espacio;
+}
+
+.categoria {
+  h3 {
+    margin: 0 0 8px;
+    color: $color-principal;
+  }
+
+  &.sub {
+    padding-left: $espacio * 0.75;
+    border-left: 3px solid $color-acento;
+
+    h3 { color: $color-secundario; font-size: 1rem; }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    padding: 8px;
+    background-color: white;
+    border: 1px solid $color-borde;
+    border-radius: $radio;
+
+    &.oculto { opacity: 0.5; }
+  }
+
+  img {
+    width: 56px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+}
+
+.nombre {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  small { color: $color-tenue; }
+}
+
+@media (max-width: 900px) {
+  .distribucion { grid-template-columns: 1fr; }
+}

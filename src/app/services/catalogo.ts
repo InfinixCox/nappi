@@ -39,4 +39,38 @@ export class Catalogo {
   formatoPrecio(valor: number): string {
     return '$ ' + valor.toLocaleString('es-CO');
   }
+
+  // ===== Panel del restaurante: su menú =====
+  listarPlatosPanel(restauranteId: number) {
+    return this.sb.from('platos').select('*').eq('restaurante_id', restauranteId).order('nombre');
+  }
+
+  crearCategoria(restauranteId: number, nombre: string, padreId: number | null) {
+    return this.sb.from('categorias').insert({ restaurante_id: restauranteId, nombre: nombre, padre_id: padreId });
+  }
+
+  crearPlato(datos: { restaurante_id: number; categoria_id: number; nombre: string; descripcion: string; precio: number; imagen_path: string }) {
+    return this.sb.from('platos').insert(datos);
+  }
+
+  actualizarPlato(id: number, datos: { categoria_id?: number; nombre?: string; descripcion?: string; precio?: number; imagen_path?: string; disponible?: boolean }) {
+    return this.sb.from('platos').update(datos).eq('id', id);
+  }
+
+  // Igual a la subida del avatar del Challenge 10: carpeta del restaurante + Date.now()
+  async subirImagen(slug: string, archivo: File): Promise<{ ruta: string; error: string }> {
+    if (!archivo.type.startsWith('image/')) {
+      return { ruta: '', error: 'Solo se permiten imágenes.' };
+    }
+
+    if (archivo.size > 2 * 1024 * 1024) {
+      return { ruta: '', error: 'La imagen no puede pesar más de 2 MB.' };
+    }
+
+    const extension = archivo.name.split('.').pop();
+    const ruta = `${slug}/${Date.now()}.${extension}`;
+    const { error } = await this.sb.storage.from('imagenes').upload(ruta, archivo, { upsert: true });
+
+    return { ruta: error ? '' : ruta, error: error ? error.message : '' };
+  }
 }

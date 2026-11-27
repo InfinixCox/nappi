@@ -10,6 +10,7 @@ import { Carrito } from './pages/carrito/carrito';
 import { Checkout } from './pages/checkout/checkout';
 import { Panel } from './pages/panel/panel';
 import { PanelPedidos } from './pages/panel-pedidos/panel-pedidos';
+import { PanelMenu } from './pages/panel-menu/panel-menu';
 import { NoEncontrado } from './pages/no-encontrado/no-encontrado';
 import { clienteGuard } from './guards/cliente-guard';
 import { restauranteGuard } from './guards/restaurante-guard';
@@ -32,6 +33,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'pedidos', pathMatch: 'full' },
       { path: 'pedidos', component: PanelPedidos },
+      { path: 'menu', component: PanelMenu },
     ],
   },
   { path: '**', component: NoEncontrado }

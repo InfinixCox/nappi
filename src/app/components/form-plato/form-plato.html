@@ -1,0 +1,39 @@
+<form class="formulario" (ngSubmit)="enviar()">
+  <h2>{{ editar() ? 'Editar ' + editar()?.nombre : 'Nuevo plato' }}</h2>
+
+  <label for="plato-nombre">Nombre</label>
+  <input id="plato-nombre" name="nombre" type="text" placeholder="Ej: La Burguesa Rellena"
+    [ngModel]="nombre()" (ngModelChange)="nombre.set($event)">
+
+  <label for="plato-desc">Descripción</label>
+  <textarea id="plato-desc" name="descripcion" rows="2"
+    [ngModel]="descripcion()" (ngModelChange)="descripcion.set($event)"></textarea>
+
+  <label for="plato-precio">Precio (COP)</label>
+  <input id="plato-precio" name="precio" type="number" min="0" step="100"
+    [ngModel]="precio()" (ngModelChange)="precio.set($event)">
+
+  <label for="plato-cat">Categoría</label>
+  <select id="plato-cat" name="categoria" [ngModel]="categoriaId()" (ngModelChange)="categoriaId.set(+$event)">
+    <option [value]="0">Elige la categoría</option>
+    @for (categoria of categorias; track categoria.id) {
+      <option [value]="categoria.id">{{ categoria.nombre }}</option>
+    }
+  </select>
+
+  <label for="plato-foto">Foto {{ editar() ? '(opcional, solo si la quieres cambiar)' : '' }}</label>
+  <input id="plato-foto" type="file" accept="image/png, image/jpeg, image/webp" (change)="elegirArchivo($event)">
+
+  <div class="botones">
+    <button type="submit" class="boton-compra" [disabled]="guardando">
+      @if (guardando) { Guardando... } @else { Guardar }
+    </button>
+    @if (editar()) {
+      <button type="button" class="boton-secundario" (click)="cancelar.emit()">Cancelar</button>
+    }
+  </div>
+
+  @if (mensaje() !== '') {
+    <p class="aviso-error">{{ mensaje() }}</p>
+  }
+</form>

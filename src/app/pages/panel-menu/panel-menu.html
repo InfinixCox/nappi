@@ -1,0 +1,40 @@
+<div class="distribucion">
+  <div class="columna">
+    <app-form-plato
+      [categorias]="categorias()"
+      [editar]="editando()"
+      [guardando]="guardando()"
+      (guardar)="guardarPlato($event)"
+      (cancelar)="editando.set(null)"
+    />
+    <app-form-categoria [principales]="principales()" (crear)="crearCategoria($event)" />
+  </div>
+
+  <div class="columna">
+    @if (mensaje() !== '') {
+      <p [class]="tipoMensaje() === 'error' ? 'aviso-error' : 'aviso-exito'">{{ mensaje() }}</p>
+    }
+
+    @for (item of nodosEnOrden(); track item.nodo) {
+      <section class="categoria" [class.sub]="item.nivel > 1">
+        <h3>{{ item.nodo.titulo }}</h3>
+        <ul>
+          @for (plato of item.nodo.platos; track plato.id) {
+            <li [class.oculto]="!plato.disponible">
+              <img [src]="catalogo.urlImagen(plato.imagen_path)" [alt]="plato.nombre">
+              <span class="nombre">{{ plato.nombre }}
+                <small>{{ catalogo.formatoPrecio(plato.precio) }} · {{ plato.veces_pedido }} vendidos</small>
+              </span>
+              <button class="boton-secundario" (click)="editando.set(plato)">Editar</button>
+              <button class="boton-principal" (click)="cambiarDisponible(plato)">
+                {{ plato.disponible ? 'Ocultar' : 'Mostrar' }}
+              </button>
+            </li>
+          } @empty {
+            <li class="vacio">Sin platos aquí todavía.</li>
+          }
+        </ul>
+      </section>
+    }
+  </div>
+</div>

@@ -1,5 +1,5 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, OnInit, inject, input, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Catalogo } from '../../services/catalogo';
 import { Restaurante as RestauranteModelo } from '../../models/restaurante';
 import { Plato } from '../../models/plato';
@@ -16,7 +16,8 @@ import { TarjetaPlato } from '../../components/tarjeta-plato/tarjeta-plato';
   styleUrl: './restaurante.scss',
 })
 export class Restaurante implements OnInit {
-  private ruta = inject(ActivatedRoute);
+  // /ruta/2 -> id() = '2' (rutas dinámicas con input(), Clase 8)
+  id = input<string>();
   catalogo = inject(Catalogo);
 
   private arbolPrecios = new ArbolPrecios();
@@ -29,7 +30,7 @@ export class Restaurante implements OnInit {
   mensaje = signal('');
 
   async ngOnInit(): Promise<void> {
-    const id = Number(this.ruta.snapshot.paramMap.get('id'));
+    const id = Number(this.id());
 
     const [restaurante, categorias, platos] = await Promise.all([
       this.catalogo.obtenerRestaurante(id),

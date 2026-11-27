@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, OnDestroy, OnInit, inject, input, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import * as L from 'leaflet';
 import { Pedidos } from '../../services/pedidos';
@@ -15,7 +15,8 @@ import { LineaEstados } from '../../components/linea-estados/linea-estados';
   styleUrl: './seguimiento.scss',
 })
 export class Seguimiento implements OnInit, OnDestroy {
-  private ruta = inject(ActivatedRoute);
+  // /ruta/2 -> id() = '2' (rutas dinámicas con input(), Clase 8)
+  id = input<string>();
   private pedidos = inject(Pedidos);
   private mapaServicio = inject(Mapa);
   catalogo = inject(Catalogo);
@@ -30,7 +31,7 @@ export class Seguimiento implements OnInit, OnDestroy {
   mensaje = signal('');
 
   async ngOnInit(): Promise<void> {
-    const id = Number(this.ruta.snapshot.paramMap.get('id'));
+    const id = Number(this.id());
     const { data, error } = await this.pedidos.obtener(id);
 
     if (error || !data) {

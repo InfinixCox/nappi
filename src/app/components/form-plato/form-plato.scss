@@ -1,0 +1,28 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.formulario {
+  @include tarjeta(none);
+  margin: 0;
+
+  h2 {
+    margin-top: 0;
+    color: $color-principal;
+    font-size: 1.1rem;
+  }
+
+  label {
+    display: block;
+    margin: $espacio * 0.75 0 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+}
+
+.botones {
+  display: flex;
+  gap: 10px;
+  margin-top: $espacio;
+
+  button { flex: 1; }
+}
