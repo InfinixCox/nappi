@@ -72,6 +72,11 @@ export class Auth {
     return this.sb.from('profiles').insert({ id: id, nombre: nombre, barrio_id: barrioId });
   }
 
+  // Lo usa Mi perfil; las políticas RLS no dejan cambiar el rol
+  actualizarPerfil(id: string, nombre: string, barrioId: number) {
+    return this.sb.from('profiles').update({ nombre: nombre, barrio_id: barrioId }).eq('id', id);
+  }
+
   entrar(email: string, clave: string) {
     return this.sb.auth.signInWithPassword({ email: email, password: clave });
   }

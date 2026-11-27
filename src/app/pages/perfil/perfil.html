@@ -1,0 +1,40 @@
+<section class="panel-acceso">
+  <header class="cabecera-acceso">
+    <p class="subtitulo">Tu barrio decide quién te entrega</p>
+    <h2>Mi perfil</h2>
+    <p class="correo">{{ auth.session()?.user?.email }}</p>
+  </header>
+
+  <form class="cuerpo-acceso" (ngSubmit)="guardar()">
+    <label for="nombre">Nombre</label>
+    <input
+      id="nombre"
+      type="text"
+      name="nombre"
+      placeholder="¿Cómo te decimos?"
+      [ngModel]="nombre()"
+      (ngModelChange)="nombre.set($event)"
+    >
+
+    <label for="barrio">Barrio</label>
+    <select
+      id="barrio"
+      name="barrio"
+      [ngModel]="barrioId()"
+      (ngModelChange)="barrioId.set(+$event)"
+    >
+      <option [value]="0">Elige tu barrio</option>
+      @for (barrio of barrios(); track barrio.id) {
+        <option [value]="barrio.id">{{ barrio.nombre }}</option>
+      }
+    </select>
+
+    <button type="submit" class="boton-ancho" [disabled]="pendiente()">
+      @if (pendiente()) { Guardando... } @else { Guardar cambios }
+    </button>
+
+    @if (mensaje() !== '') {
+      <p [class]="tipoMensaje() === 'error' ? 'aviso-error' : 'aviso-exito'">{{ mensaje() }}</p>
+    }
+  </form>
+</section>

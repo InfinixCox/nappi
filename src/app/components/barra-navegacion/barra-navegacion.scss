@@ -79,6 +79,15 @@ nav {
   font-size: 0.9rem;
 }
 
+.enlace-perfil {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .boton-salir {
   @include boton(transparent);
   border-color: white;

@@ -12,6 +12,7 @@ import { Panel } from './pages/panel/panel';
 import { PanelPedidos } from './pages/panel-pedidos/panel-pedidos';
 import { PanelMenu } from './pages/panel-menu/panel-menu';
 import { NoEncontrado } from './pages/no-encontrado/no-encontrado';
+import { Perfil } from './pages/perfil/perfil';
 import { clienteGuard } from './guards/cliente-guard';
 import { restauranteGuard } from './guards/restaurante-guard';
 import { invitadoGuard } from './guards/invitado-guard';
@@ -26,6 +27,7 @@ export const routes: Routes = [
   { path: 'checkout', component: Checkout, canActivate: [clienteGuard] },
   { path: 'pedidos', component: MisPedidos, canActivate: [clienteGuard] },
   { path: 'pedidos/:id', component: Seguimiento, canActivate: [clienteGuard] },
+  { path: 'perfil', component: Perfil, canActivate: [clienteGuard] },
   {
     path: 'panel',
     component: Panel,

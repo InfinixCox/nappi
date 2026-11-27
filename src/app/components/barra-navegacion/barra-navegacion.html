@@ -25,7 +25,11 @@
     }
 
     @if (auth.session()) {
-      <span class="usuario">{{ auth.perfil()?.nombre }}</span>
+      @if (auth.perfil()?.rol === 'cliente') {
+        <a routerLink="/perfil" class="usuario enlace-perfil" title="Ver mi perfil">{{ auth.perfil()?.nombre }}</a>
+      } @else {
+        <span class="usuario">{{ auth.perfil()?.nombre }}</span>
+      }
       <button class="boton-salir" (click)="salir()">Salir</button>
     } @else {
       <a routerLink="/login" class="enlace-entrar">Entrar</a>
