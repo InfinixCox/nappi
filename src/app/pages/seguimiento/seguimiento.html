@@ -1,0 +1,36 @@
+<section class="pagina">
+  <a routerLink="/pedidos" class="volver">← Mis pedidos</a>
+
+  @if (mensaje() !== '') {
+    <p class="aviso-error">{{ mensaje() }}</p>
+  }
+
+  @if (pedido(); as p) {
+    <div class="cabecera">
+      <div>
+        <h1>Pedido #{{ p.id }} · {{ p.restaurantes?.nombre }}</h1>
+        <p class="estado">{{ textoEstado() }}</p>
+      </div>
+      <strong class="total">{{ catalogo.formatoPrecio(p.total) }}</strong>
+    </div>
+
+    <app-linea-estados [estado]="p.estado" />
+  }
+
+  <div id="mapa-seguimiento" class="mapa"></div>
+
+  @if (pedido(); as p) {
+    <div class="detalle">
+      <div>
+        <h2>Tu pedido</h2>
+        <ul>
+          @for (item of p.pedido_items; track item.plato_id) {
+            <li>{{ item.cantidad }} × {{ item.nombre }}</li>
+          }
+        </ul>
+        <p class="direccion">{{ p.direccion }} · {{ p.barrios?.nombre }}</p>
+      </div>
+      <p class="napa">{{ p.restaurantes?.napa }}</p>
+    </div>
+  }
+</section>

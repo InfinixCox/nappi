@@ -6,6 +6,7 @@
 
   <nav>
     <a routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+    <a routerLink="/cobertura" routerLinkActive="activo">Cobertura</a>
 
     @if (auth.perfil()?.rol === 'cliente') {
       <a routerLink="/pedidos" routerLinkActive="activo">Mis pedidos</a>

@@ -52,3 +52,10 @@ textarea {
   color: $color-tenue;
   text-align: center;
 }
+
+// Ícono del domiciliario en el mapa (Leaflet lo crea fuera de los componentes)
+.icono-domiciliario {
+  font-size: 26px;
+  line-height: 32px;
+  text-align: center;
+}

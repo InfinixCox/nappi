@@ -1,0 +1,8 @@
+<ol class="linea">
+  @for (paso of pasos; track paso.estado) {
+    <li [class.hecho]="completado(paso.estado)" [class.actual]="paso.estado === estado">
+      <span class="punto"></span>
+      {{ paso.texto }}
+    </li>
+  }
+</ol>

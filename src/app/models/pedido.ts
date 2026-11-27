@@ -19,7 +19,7 @@ export interface Pedido {
   progreso: number;
   total: number;
   created_at: string;
-  restaurantes?: { nombre: string };
+  restaurantes?: { nombre: string; lat?: number; lng?: number; napa?: string };
   barrios?: { nombre: string };
   pedido_items?: PedidoItem[];
 }

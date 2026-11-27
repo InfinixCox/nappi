@@ -1,0 +1,24 @@
+@use '../../../styles/variables' as *;
+
+h1 { color: $color-principal; }
+
+.descripcion { color: $color-secundario; }
+
+.selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 420px;
+
+  label {
+    font-weight: bold;
+    white-space: nowrap;
+  }
+}
+
+.mapa {
+  height: 560px;
+  margin-top: $espacio;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+}

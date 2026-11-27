@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { Inicio } from './pages/inicio/inicio';
 import { Restaurante } from './pages/restaurante/restaurante';
+import { Cobertura } from './pages/cobertura/cobertura';
+import { Seguimiento } from './pages/seguimiento/seguimiento';
 import { Login } from './pages/login/login';
 import { Registro } from './pages/registro/registro';
 import { MisPedidos } from './pages/mis-pedidos/mis-pedidos';
@@ -16,11 +18,13 @@ import { invitadoGuard } from './guards/invitado-guard';
 export const routes: Routes = [
   { path: '', component: Inicio },
   { path: 'restaurante/:id', component: Restaurante },
+  { path: 'cobertura', component: Cobertura },
   { path: 'login', component: Login, canActivate: [invitadoGuard] },
   { path: 'registro', component: Registro, canActivate: [invitadoGuard] },
   { path: 'carrito', component: Carrito, canActivate: [clienteGuard] },
   { path: 'checkout', component: Checkout, canActivate: [clienteGuard] },
   { path: 'pedidos', component: MisPedidos, canActivate: [clienteGuard] },
+  { path: 'pedidos/:id', component: Seguimiento, canActivate: [clienteGuard] },
   {
     path: 'panel',
     component: Panel,

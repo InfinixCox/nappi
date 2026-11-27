@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { Auth } from '../../services/auth';
 import { Pedidos } from '../../services/pedidos';
@@ -7,7 +8,7 @@ import { Pedido } from '../../models/pedido';
 
 @Component({
   selector: 'app-mis-pedidos',
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink],
   templateUrl: './mis-pedidos.html',
   styleUrl: './mis-pedidos.scss',
 })

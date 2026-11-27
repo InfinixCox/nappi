@@ -1,0 +1,50 @@
+@use '../../../styles/variables' as *;
+
+.volver {
+  color: $color-principal;
+  text-decoration: none;
+}
+
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    margin-bottom: 4px;
+    color: $color-principal;
+  }
+}
+
+.estado { margin-top: 0; }
+
+.total { font-size: 1.3rem; }
+
+.mapa {
+  height: 420px;
+  margin: $espacio * 1.5 0;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+}
+
+.detalle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $espacio;
+
+  h2 {
+    margin-top: 0;
+    color: $color-principal;
+    font-size: 1.1rem;
+  }
+}
+
+.direccion { color: $color-tenue; }
+
+.napa {
+  align-self: start;
+  padding: $espacio;
+  border: 2px dashed $color-acento;
+  border-radius: $radio;
+  background-color: white;
+}

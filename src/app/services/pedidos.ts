@@ -76,7 +76,7 @@ export class Pedidos {
   obtener(id: number) {
     return this.sb
       .from('pedidos')
-      .select('*, barrios(nombre), restaurantes(nombre), pedido_items(*)')
+      .select('*, barrios(nombre), restaurantes(nombre, lat, lng, napa), pedido_items(*)')
       .eq('id', id)
       .maybeSingle();
   }

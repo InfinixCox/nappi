@@ -117,6 +117,6 @@ export class Checkout implements OnInit {
 
     await this.carrito.vaciar();
     this.enviando.set(false);
-    await this.router.navigate(['/pedidos']);
+    await this.router.navigate(['/pedidos', resultado.id]);
   }
 }

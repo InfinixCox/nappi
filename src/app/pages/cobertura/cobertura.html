@@ -1,0 +1,23 @@
+<section class="pagina">
+  <h1>¿Hasta dónde llega Ñappi?</h1>
+  <p class="descripcion">Cada barrio es un nodo y las líneas unen barrios vecinos. Un restaurante entrega en su barrio y en los que están conectados.</p>
+
+  <div class="selector">
+    <label for="restaurante">Ver cobertura de</label>
+    <select id="restaurante" [ngModel]="restauranteId()" (ngModelChange)="elegir(+$event)">
+      <option [value]="0">Elige un restaurante</option>
+      @for (restaurante of restaurantes(); track restaurante.id) {
+        <option [value]="restaurante.id">{{ restaurante.nombre }}</option>
+      }
+    </select>
+  </div>
+
+  @if (barriosCubiertos().length > 0) {
+    <p class="aviso-exito">Entrega en: {{ nombresCubiertos() }}</p>
+  }
+  @if (mensaje() !== '') {
+    <p class="aviso-error">{{ mensaje() }}</p>
+  }
+
+  <div id="mapa-cobertura" class="mapa"></div>
+</section>
