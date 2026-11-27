@@ -92,3 +92,8 @@
     }
   }
 }
+
+// En celular la tarjeta deja un margen a los lados en vez de quedar pegada al borde
+@media (max-width: 460px) {
+  .panel-acceso { margin: $espacio * 2 $espacio; }
+}

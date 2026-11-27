@@ -48,3 +48,15 @@
   border-radius: $radio;
   background-color: white;
 }
+
+@media (max-width: 700px) {
+  // Si el título es largo, el total baja completo a otra línea
+  .cabecera {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .total { white-space: nowrap; }
+  .mapa { height: 320px; }
+  .detalle { grid-template-columns: 1fr; }
+}

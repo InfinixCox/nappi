@@ -114,4 +114,13 @@ nav {
     justify-self: center;
     align-items: center;
   }
+
+  // Si no caben, los enlaces bajan a otra línea en vez de salirse
+  nav,
+  .derecha {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav { gap: $espacio; }
 }

@@ -89,5 +89,17 @@ h1 { color: $color-principal; }
 
 @media (max-width: 900px) {
   .distribucion { grid-template-columns: 1fr; }
-  .items li { grid-template-columns: 60px 1fr auto; }
+  .items {
+    li { grid-template-columns: 60px 1fr auto; }
+
+    img {
+      width: 60px;
+      height: 45px;
+    }
+
+    // El subtotal baja a la segunda fila, debajo del nombre, y "Quitar" queda a la derecha
+    li > strong { grid-column: 2; }
+  }
+
+  .quitar { justify-self: end; }
 }
