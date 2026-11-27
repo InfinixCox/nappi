@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Auth } from '../../services/auth';
@@ -18,7 +18,7 @@ import { Grafo } from '../../models/grafo';
   templateUrl: './checkout.html',
   styleUrl: './checkout.scss',
 })
-export class Checkout implements OnInit {
+export class Checkout {
   private auth = inject(Auth);
   private barriosServicio = inject(Barrios);
   private pedidos = inject(Pedidos);
@@ -35,12 +35,22 @@ export class Checkout implements OnInit {
   mensaje = signal('');
   enviando = signal(false);
 
-  async ngOnInit(): Promise<void> {
-    const restauranteId = this.carrito.restauranteId();
-    if (restauranteId === null) {
-      return;
-    }
+  private datosCargados = false;
 
+  constructor() {
+    // Si se entra directo o se recarga, el carrito todavía se está cargando desde Supabase:
+    // cuando lleguen los ítems se cargan los datos del pedido (igual que Inicio espera al perfil)
+    effect(() => {
+      const items = this.carrito.items();
+      const restauranteId = this.carrito.restauranteId();
+      if (items.length > 0 && restauranteId !== null && !this.datosCargados) {
+        this.datosCargados = true;
+        this.cargarDatos(restauranteId);
+      }
+    });
+  }
+
+  async cargarDatos(restauranteId: number): Promise<void> {
     const [restaurante, barrios, vecinos] = await Promise.all([
       this.catalogo.obtenerRestaurante(restauranteId),
       this.barriosServicio.listar(),
