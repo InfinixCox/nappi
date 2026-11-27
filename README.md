@@ -12,6 +12,7 @@ Proyecto final de **Estructuras de Datos y Algoritmos 2** (Grupo 1), Universidad
 - **Propuesta gráfica (Figma):** https://www.figma.com/design/iLlsHBYhhJGIUYeMyFgpLO
 - **Repositorio:** https://github.com/InfinixCox/nappi
 - **Documento final (Google Docs):** https://docs.google.com/document/d/1brA90GsgPHwCUDl2QjKDCEQMM4ZutmspH5aHdYaaHZI/edit?usp=sharing
+- *Documento final (en el repositorio):* [docs/DOCUMENTO-FINAL.md](docs/DOCUMENTO-FINAL.md)
 
 ## Integrantes
 
