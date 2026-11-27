@@ -1,5 +1,12 @@
 export type EstadoPedido = 'pendiente' | 'en_cocina' | 'en_camino' | 'entregado';
 
+export interface PedidoItem {
+  plato_id: number;
+  nombre: string;
+  cantidad: number;
+  precio_unitario: number;
+}
+
 export interface Pedido {
   id: number;
   cliente_id: string;
@@ -13,4 +20,6 @@ export interface Pedido {
   total: number;
   created_at: string;
   restaurantes?: { nombre: string };
+  barrios?: { nombre: string };
+  pedido_items?: PedidoItem[];
 }

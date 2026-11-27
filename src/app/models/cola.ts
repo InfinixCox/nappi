@@ -1,0 +1,24 @@
+// Cola (FIFO): el primero que llega es el primero que se atiende (como el cajero del Challenge 05)
+export class Cola<T> {
+  items: T[] = [];
+
+  enqueue(item: T): void {
+    this.items.push(item);
+  }
+
+  dequeue(): T | undefined {
+    return this.items.shift();
+  }
+
+  peek(): T | undefined {
+    return this.items[0];
+  }
+
+  isEmpty(): boolean {
+    return this.items.length === 0;
+  }
+
+  size(): number {
+    return this.items.length;
+  }
+}

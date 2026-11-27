@@ -1,0 +1,25 @@
+<article class="pedido">
+  <header>
+    <strong>Pedido #{{ pedido.id }}</strong>
+    <span class="hora">{{ pedido.created_at | date: 'h:mm a' }}</span>
+  </header>
+
+  <ul>
+    @for (item of pedido.pedido_items; track item.plato_id) {
+      <li>{{ item.cantidad }} × {{ item.nombre }}</li>
+    }
+  </ul>
+
+  <p class="direccion">{{ pedido.direccion }} · {{ pedido.barrios?.nombre }}</p>
+
+  @if (pedido.estado === 'en_camino') {
+    <div class="pista"><div class="barra" [style.width.%]="pedido.progreso"></div></div>
+  }
+
+  <footer>
+    <strong>{{ catalogo.formatoPrecio(pedido.total) }}</strong>
+    @if (textoBoton !== '') {
+      <button class="boton-compra" (click)="accion.emit(pedido)">{{ textoBoton }}</button>
+    }
+  </footer>
+</article>

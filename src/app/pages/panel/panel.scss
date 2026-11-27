@@ -3,3 +3,22 @@
 h1 {
   color: $color-principal;
 }
+
+.pestanas {
+  display: flex;
+  gap: $espacio;
+  margin-bottom: $espacio;
+  border-bottom: 1px solid $color-borde;
+
+  a {
+    padding: 8px 4px;
+    color: $color-secundario;
+    text-decoration: none;
+
+    &.activo {
+      color: $color-principal;
+      font-weight: bold;
+      border-bottom: 3px solid $color-acento;
+    }
+  }
+}

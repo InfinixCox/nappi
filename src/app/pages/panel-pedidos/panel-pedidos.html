@@ -1,0 +1,37 @@
+@if (cargando()) {
+  <p class="vacio">Revisando la comanda...</p>
+} @else {
+  <div class="columnas">
+    <section>
+      <div class="titulo">
+        <h2>En espera ({{ pendientes().length }})</h2>
+        <button class="boton-compra" (click)="tomarSiguiente()" [disabled]="!siguiente()">
+          Tomar siguiente @if (siguiente()) { (#{{ siguiente()?.id }}) }
+        </button>
+      </div>
+      <p class="ayuda">Se atienden en orden de llegada: el primero que entra es el primero que sale.</p>
+      <div class="lista">
+        @for (pedido of pendientes(); track pedido.id) {
+          <app-tarjeta-pedido [pedido]="pedido" />
+        } @empty {
+          <p class="vacio">Sin pedidos en espera. Los nuevos aparecen aquí solos.</p>
+        }
+      </div>
+    </section>
+
+    <section>
+      <div class="titulo"><h2>En curso ({{ enCurso().length }})</h2></div>
+      <div class="lista">
+        @for (pedido of enCurso(); track pedido.id) {
+          <app-tarjeta-pedido [pedido]="pedido" [textoBoton]="textoBoton(pedido)" (accion)="avanzar($event)" />
+        } @empty {
+          <p class="vacio">Nada en la cocina por ahora.</p>
+        }
+      </div>
+    </section>
+  </div>
+}
+
+@if (mensaje() !== '') {
+  <p class="aviso-exito">{{ mensaje() }}</p>
+}

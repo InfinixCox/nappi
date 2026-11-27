@@ -1,0 +1,39 @@
+@use '../../../styles/variables' as *;
+
+.pedido {
+  padding: $espacio;
+  background-color: white;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+
+  header,
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  ul {
+    margin: 10px 0;
+    padding-left: 18px;
+  }
+}
+
+.hora,
+.direccion {
+  color: $color-tenue;
+  font-size: 0.85rem;
+}
+
+.pista {
+  height: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-radius: $radio;
+  background-color: $color-borde;
+}
+
+.barra {
+  height: 100%;
+  background-color: $color-principal;
+}

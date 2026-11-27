@@ -1,4 +1,7 @@
 <section class="pagina">
   <h1>Panel de {{ auth.perfil()?.nombre }}</h1>
+  <nav class="pestanas">
+    <a routerLink="pedidos" routerLinkActive="activo">Pedidos</a>
+  </nav>
   <router-outlet />
 </section>
