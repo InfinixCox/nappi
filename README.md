@@ -1,59 +1,61 @@
-# Nappi
+# Ñappi
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.22.
+**Siempre con ñapa.**
 
-## Development server
+Ñappi es una aplicación web de domicilios en Cali con varios restaurantes. El cliente se registra con su barrio, ve qué restaurantes le entregan, busca platos, arma su carrito, hace el pedido y lo sigue en vivo en un mapa. Cada restaurante atiende su cola de pedidos en tiempo real y administra su menú con fotos.
 
-To start a local development server, run:
+Proyecto final de **Estructuras de Datos y Algoritmos 2** (Grupo 1), Universidad Autónoma de Occidente, profesor Jonathan López Londoño.
 
-```bash
-ng serve
-```
+## Enlaces
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Aplicación publicada (Netlify):** https://nappi-cali.netlify.app
+- **Propuesta gráfica (Figma):** https://www.figma.com/design/iLlsHBYhhJGIUYeMyFgpLO
+- **Repositorio:** https://github.com/InfinixCox/nappi
+- **Documento final (Google Docs):** https://docs.google.com/document/d/1brA90GsgPHwCUDl2QjKDCEQMM4ZutmspH5aHdYaaHZI/edit?usp=sharing
 
-## Code scaffolding
+## Integrantes
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+| Integrante | GitHub | Rama | Aportes |
+|---|---|---|---|
+| Juan David Álvarez | [InfinixCox](https://github.com/InfinixCox) | `juan-david` | Planeación y base de datos en Supabase; base del proyecto, autenticación y guards; catálogo con grafo, trie, max heap, árbol n-ario y árbol binario; carrito con lista enlazada y pila; checkout con Nominatim; panel con cola en tiempo real; seguimiento con mapa y OSRM; mapa de cobertura; panel de menú con Storage; imágenes de 5 restaurantes |
+| Juan Steban Burbano Hidalgo | [Steban-B](https://github.com/Steban-B) | `juan-steban` | Imágenes de Tinto y Cuento; propuesta gráfica en Figma; página "Mi perfil"; ajustes para celular; publicación en Netlify; README y documento final |
 
-```bash
-ng generate component component-name
-```
+## Tecnologías
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **Frontend:** Angular 21 (componentes standalone, signals, Angular Router con guards), TypeScript y SCSS.
+- **Backend:** Supabase: autenticación con correo y contraseña, base de datos PostgreSQL con políticas RLS, Realtime y Storage.
+- **Mapas:** Leaflet con teselas de OpenStreetMap.
+- **APIs externas:** Nominatim (dirección a coordenadas) y OSRM (ruta del domiciliario), consumidas con `fetch`.
+- **Publicación:** Netlify.
 
-```bash
-ng generate --help
-```
+## Cómo correrlo en local
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Requisitos: Node 20 o superior y Angular CLI 21.
 
 ```bash
-ng test
+git clone https://github.com/InfinixCox/nappi.git
+cd nappi
+npm install
+ng serve -o
 ```
 
-## Running end-to-end tests
+La aplicación abre en `http://localhost:4200`. Para generar la versión de producción se usa `ng build`, que deja los archivos en `dist/nappi/browser`.
 
-For end-to-end (e2e) testing, run:
+## Cuentas de prueba
 
-```bash
-ng e2e
-```
+Los clientes se crean desde la página **Crear cuenta**. Para entrar como restaurante hay una cuenta por cada uno:
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- `burguesia@nappi.test` (La Burguesía)
+- `masacritica@nappi.test` (Masa Crítica)
+- `sancocho@nappi.test` (Sancocho y Sentimiento)
+- `rollo@nappi.test` (Roll-o Caleño)
+- `pollo@nappi.test` (El Pollo Mensajero)
+- `tintoycuento@nappi.test` (Tinto y Cuento)
 
-## Additional Resources
+Las contraseñas no se publican en el repositorio: se le piden a los autores.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Atribuciones
+
+- Mapas y búsqueda de direcciones: © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), servicio Nominatim.
+- Rutas: [OSRM](https://project-osrm.org/) (servidor de demostración).
+- Las fotos de los platos y restaurantes fueron generadas con IA para este proyecto.
