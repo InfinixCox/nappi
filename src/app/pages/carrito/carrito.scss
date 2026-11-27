@@ -1,0 +1,93 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+h1 { color: $color-principal; }
+
+.centro { text-align: center; }
+
+.distribucion {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  align-items: start;
+  gap: $espacio * 1.5;
+}
+
+.items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: grid;
+    grid-template-columns: 72px 1fr auto auto auto;
+    align-items: center;
+    gap: $espacio;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid $color-borde;
+    border-radius: $radio;
+  }
+
+  img {
+    width: 72px;
+    height: 54px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+}
+
+.nombre {
+  display: flex;
+  flex-direction: column;
+
+  small { color: $color-tenue; }
+}
+
+.cantidad {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  button {
+    @include boton($color-principal);
+    padding: 2px 10px;
+  }
+}
+
+.quitar {
+  border: none;
+  background: none;
+  color: $color-peligro;
+  cursor: pointer;
+}
+
+.resumen {
+  @include tarjeta(none);
+  margin: 0;
+
+  h2 {
+    margin-top: 0;
+    color: $color-principal;
+  }
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+}
+
+.ancho,
+.boton-compra {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.deshacer { margin-top: $espacio; }
+
+@media (max-width: 900px) {
+  .distribucion { grid-template-columns: 1fr; }
+  .items li { grid-template-columns: 60px 1fr auto; }
+}

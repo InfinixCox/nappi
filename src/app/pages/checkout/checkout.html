@@ -1,0 +1,61 @@
+<section class="pagina">
+  <h1>Confirmar pedido</h1>
+
+  @if (carrito.items().length === 0) {
+    <p class="vacio">No hay nada en el carrito para pagar.</p>
+    <p class="centro"><a routerLink="/" class="boton-compra">Ver restaurantes</a></p>
+  } @else {
+    <div class="distribucion">
+      <form class="tarjeta-form" (ngSubmit)="confirmar()">
+        <h2>¿A dónde te lo llevamos?</h2>
+
+        <label for="barrio">Barrio de entrega</label>
+        <select id="barrio" name="barrio" [ngModel]="barrioId()" (ngModelChange)="barrioId.set(+$event)">
+          <option [value]="0">Elige el barrio</option>
+          @for (barrio of barriosPermitidos(); track barrio.id) {
+            <option [value]="barrio.id">{{ barrio.nombre }}</option>
+          }
+        </select>
+        <p class="ayuda">{{ restaurante()?.nombre }} solo entrega en su barrio y en los vecinos.</p>
+
+        <label for="direccion">Dirección</label>
+        <div class="fila">
+          <input id="direccion" name="direccion" type="text" placeholder="Calle 5 # 38-20"
+            [ngModel]="direccion()" (ngModelChange)="cambiarDireccion($event)">
+          <button type="button" class="boton-principal" (click)="buscarDireccion()" [disabled]="mapa.cargando()">
+            @if (mapa.cargando()) { Buscando... } @else { Buscar en el mapa }
+          </button>
+        </div>
+
+        @if (ubicacion(); as u) {
+          <p class="aviso-exito">Te encontramos: {{ u.display_name }}</p>
+        }
+        @if (mapa.error() !== '') {
+          <p class="aviso-error">{{ mapa.error() }}</p>
+        }
+        <p class="ayuda">Búsqueda de direcciones: © OpenStreetMap contributors (Nominatim).</p>
+
+        <p class="pago">Pago: contra entrega (efectivo o datáfono).</p>
+
+        <button type="submit" class="boton-compra ancho" [disabled]="enviando()">
+          @if (enviando()) { Enviando pedido... } @else { Confirmar pedido }
+        </button>
+
+        @if (mensaje() !== '') {
+          <p class="aviso-error">{{ mensaje() }}</p>
+        }
+      </form>
+
+      <aside class="tarjeta-form">
+        <h2>{{ restaurante()?.nombre }}</h2>
+        <ul class="resumen">
+          @for (item of carrito.items(); track item.plato.id) {
+            <li><span>{{ item.cantidad }} × {{ item.plato.nombre }}</span>
+              <span>{{ catalogo.formatoPrecio(item.plato.precio * item.cantidad) }}</span></li>
+          }
+        </ul>
+        <p class="total"><span>Total</span> <strong>{{ catalogo.formatoPrecio(carrito.total()) }}</strong></p>
+      </aside>
+    </div>
+  }
+</section>

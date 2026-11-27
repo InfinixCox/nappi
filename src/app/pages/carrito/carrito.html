@@ -1,0 +1,45 @@
+<section class="pagina">
+  <h1>Tu carrito</h1>
+
+  @if (carrito.items().length === 0) {
+    <p class="vacio">Tu carrito está más vacío que la nevera a fin de mes.</p>
+    <p class="centro"><a routerLink="/" class="boton-compra">Ver restaurantes</a></p>
+  } @else {
+    <div class="distribucion">
+      <ul class="items">
+        @for (item of carrito.items(); track item.plato.id) {
+          <li>
+            <img [src]="catalogo.urlImagen(item.plato.imagen_path)" [alt]="item.plato.nombre">
+            <div class="nombre">
+              <strong>{{ item.plato.nombre }}</strong>
+              <small>{{ catalogo.formatoPrecio(item.plato.precio) }} c/u</small>
+            </div>
+            <div class="cantidad">
+              <button (click)="cambiar(item.plato.id, item.cantidad - 1)" aria-label="Quitar uno">−</button>
+              <span>{{ item.cantidad }}</span>
+              <button (click)="cambiar(item.plato.id, item.cantidad + 1)" aria-label="Agregar uno">+</button>
+            </div>
+            <strong>{{ catalogo.formatoPrecio(item.plato.precio * item.cantidad) }}</strong>
+            <button class="quitar" (click)="quitar(item.plato.id)">Quitar</button>
+          </li>
+        }
+      </ul>
+
+      <aside class="resumen">
+        <h2>Resumen</h2>
+        <p class="total">Total <strong>{{ catalogo.formatoPrecio(carrito.total()) }}</strong></p>
+        <a routerLink="/checkout" class="boton-compra ancho">Ir a pagar</a>
+      </aside>
+    </div>
+  }
+
+  @if (carrito.puedeDeshacer()) {
+    <button class="boton-secundario deshacer" (click)="deshacer()">
+      Ups, mejor no (deshacer {{ carrito.descripcionDeshacer() }})
+    </button>
+  }
+
+  @if (mensaje() !== '') {
+    <p class="aviso-error">{{ mensaje() }}</p>
+  }
+</section>

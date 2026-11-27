@@ -3,6 +3,14 @@
   <div class="info">
     <h4>{{ plato.nombre }}</h4>
     <p>{{ plato.descripcion }}</p>
-    <strong class="precio">{{ catalogo.formatoPrecio(plato.precio) }}</strong>
+    <div class="pie">
+      <strong class="precio">{{ catalogo.formatoPrecio(plato.precio) }}</strong>
+      @if (auth.perfil()?.rol !== 'restaurante') {
+        <button class="boton-compra" (click)="agregar()">Agregar</button>
+      }
+    </div>
+    @if (mensaje() !== '') {
+      <small class="nota">{{ mensaje() }}</small>
+    }
   </div>
 </article>

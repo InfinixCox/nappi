@@ -1,0 +1,75 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+h1 { color: $color-principal; }
+
+.centro { text-align: center; }
+
+.distribucion {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  align-items: start;
+  gap: $espacio * 1.5;
+}
+
+.tarjeta-form {
+  @include tarjeta(none);
+  margin: 0;
+
+  h2 {
+    margin-top: 0;
+    color: $color-principal;
+    font-size: 1.1rem;
+  }
+
+  label {
+    display: block;
+    margin: $espacio 0 6px;
+    font-weight: bold;
+  }
+}
+
+.fila {
+  display: flex;
+  gap: 10px;
+
+  button { white-space: nowrap; }
+}
+
+.ayuda {
+  margin: 6px 0 0;
+  color: $color-tenue;
+  font-size: 0.8rem;
+}
+
+.pago { margin-top: $espacio; }
+
+.ancho {
+  width: 100%;
+  padding: 12px;
+}
+
+.boton-compra { text-decoration: none; }
+
+.resumen {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid $color-borde;
+  }
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 900px) {
+  .distribucion { grid-template-columns: 1fr; }
+}

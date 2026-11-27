@@ -17,6 +17,12 @@
   </nav>
 
   <div class="derecha">
+    @if (auth.perfil()?.rol === 'cliente') {
+      <a routerLink="/carrito" class="carrito">
+        Carrito <span class="contador">{{ carrito.cantidadTotal() }}</span>
+      </a>
+    }
+
     @if (auth.session()) {
       <span class="usuario">{{ auth.perfil()?.nombre }}</span>
       <button class="boton-salir" (click)="salir()">Salir</button>

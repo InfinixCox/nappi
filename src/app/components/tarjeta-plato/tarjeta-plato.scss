@@ -37,3 +37,14 @@ img {
 .precio {
   color: $color-principal;
 }
+
+.pie {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nota {
+  margin-top: 6px;
+  color: $color-principal;
+}

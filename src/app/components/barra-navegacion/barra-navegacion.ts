@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Auth } from '../../services/auth';
+import { Carrito } from '../../services/carrito';
 
 @Component({
   selector: 'app-barra-navegacion',
@@ -10,6 +11,7 @@ import { Auth } from '../../services/auth';
 })
 export class BarraNavegacion {
   auth = inject(Auth);
+  carrito = inject(Carrito);
   private router = inject(Router);
 
   async salir(): Promise<void> {
