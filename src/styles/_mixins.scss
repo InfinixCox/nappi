@@ -38,7 +38,6 @@
   font-size: 0.9rem;
 }
 
-// Etiquetas pequeñas para categorías y estados del pedido
 @mixin chip($fondo, $texto) {
   display: inline-block;
   padding: 3px 10px;

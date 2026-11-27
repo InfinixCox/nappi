@@ -1,6 +1,5 @@
 import { Plato } from './plato';
 
-// Como el Nodo del Challenge 06; adaptación: guarda la lista de platos con ese precio
 export class NodoPrecio {
   valor: number;
   platos: Plato[];

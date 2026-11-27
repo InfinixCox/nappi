@@ -15,13 +15,11 @@ import { LineaEstados } from '../../components/linea-estados/linea-estados';
   styleUrl: './seguimiento.scss',
 })
 export class Seguimiento implements OnInit, OnDestroy {
-  // /ruta/2 -> id() = '2' (rutas dinámicas con input(), Clase 8)
   id = input<string>();
   private pedidos = inject(Pedidos);
   private mapaServicio = inject(Mapa);
   catalogo = inject(Catalogo);
 
-  // Adaptación: Leaflet se usa directamente, como d3 en el Challenge 11
   private mapa: L.Map | null = null;
   private puntosRuta: [number, number][] = [];
   private domiciliario: L.Marker | null = null;
@@ -74,7 +72,6 @@ export class Seguimiento implements OnInit, OnDestroy {
     this.mapa.fitBounds(L.latLngBounds([restaurante, cliente]), { padding: [40, 40] });
   }
 
-  // Cuando el pedido va en camino: pide la ruta a OSRM (una vez) y ubica al domiciliario según el progreso
   private async actualizarDomiciliario(): Promise<void> {
     const pedido = this.pedido();
     if (!pedido || !this.mapa || (pedido.estado !== 'en_camino' && pedido.estado !== 'entregado')) {

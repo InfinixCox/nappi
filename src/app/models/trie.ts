@@ -1,7 +1,6 @@
 import { NodoTrie } from './nodo-trie';
 import { ResultadoBusqueda } from './resultado-busqueda';
 
-// Igual al Trie del Parcial 03 (insert y searchPrefix con recolección recursiva)
 export class Trie {
   root: NodoTrie;
 
@@ -37,7 +36,6 @@ export class Trie {
   private recolectar(nodo: NodoTrie, resultado: ResultadoBusqueda[]): void {
     if (nodo.isEndOfWord) {
       for (let item of nodo.resultados) {
-        // Un mismo plato se inserta por cada palabra: no se repite en la lista
         if (!resultado.includes(item)) {
           resultado.push(item);
         }
@@ -48,7 +46,6 @@ export class Trie {
     }
   }
 
-  // Minúsculas y sin tildes, para que "polemica" encuentre "Polémica"
   private normalizar(texto: string): string {
     return texto.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
   }

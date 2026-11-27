@@ -12,9 +12,6 @@ export class Mapa {
   cargando = signal(false);
   error = signal('');
 
-  // Igual al servicio con fetch del Challenge 13.
-  // Política de Nominatim: máximo 1 petición por segundo y nunca mientras se escribe,
-  // por eso solo se llama con el botón "Buscar".
   async geocodificar(direccion: string): Promise<Ubicacion | null> {
     this.controlador?.abort();
     this.error.set('');
@@ -55,13 +52,10 @@ export class Mapa {
     }
   }
 
-  // Ruta en carro entre dos puntos (OSRM). Se pide una sola vez por pedido.
-  // Devuelve la lista de puntos [lat, lng] para dibujar la línea en el mapa.
   async ruta(origen: [number, number], destino: [number, number]): Promise<[number, number][]> {
     try {
       const coordenadas = `${origen[1]},${origen[0]};${destino[1]},${destino[0]}`;
       const params = new URLSearchParams({ overview: 'full', geometries: 'geojson' });
-      // AbortSignal.timeout (Clase 13): si en 10 s no responde, se cancela
       const res = await fetch(`${this.urlOsrm}/${coordenadas}?${params}`, { signal: AbortSignal.timeout(10000) });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
@@ -69,10 +63,8 @@ export class Mapa {
       if (!respuesta.routes || respuesta.routes.length === 0) {
         return [origen, destino];
       }
-      // GeoJSON viene como [lng, lat]; Leaflet usa [lat, lng]
       return respuesta.routes[0].geometry.coordinates.map((p: number[]) => [p[1], p[0]] as [number, number]);
     } catch {
-      // Si OSRM no responde, se dibuja una línea recta para no dejar el mapa vacío
       return [origen, destino];
     }
   }

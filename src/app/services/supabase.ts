@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
 
-// Igual al servicio del Challenge 10
 @Injectable({
   providedIn: 'root',
 })

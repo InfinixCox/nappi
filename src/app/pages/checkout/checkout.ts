@@ -38,8 +38,6 @@ export class Checkout {
   private datosCargados = false;
 
   constructor() {
-    // Si se entra directo o se recarga, el carrito todavía se está cargando desde Supabase:
-    // cuando lleguen los ítems se cargan los datos del pedido (igual que Inicio espera al perfil)
     effect(() => {
       const items = this.carrito.items();
       const restauranteId = this.carrito.restauranteId();
@@ -64,7 +62,6 @@ export class Checkout {
 
     this.restaurante.set(restaurante.data);
 
-    // El grafo dice a qué barrios entrega este restaurante
     const grafo = new Grafo();
     for (let barrio of barrios.data) grafo.addNode(barrio);
     for (let arista of vecinos.data) grafo.addEdge(String(arista.barrio_a), String(arista.barrio_b));
@@ -85,7 +82,6 @@ export class Checkout {
 
   cambiarDireccion(texto: string): void {
     this.direccion.set(texto);
-    // Si cambia la dirección, hay que volver a buscarla
     this.ubicacion.set(null);
   }
 

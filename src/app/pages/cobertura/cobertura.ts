@@ -17,7 +17,6 @@ export class Cobertura implements OnInit, OnDestroy {
   private catalogo = inject(Catalogo);
 
   private grafo = new Grafo();
-  // Adaptación: Leaflet se usa directamente, como d3 en el Challenge 11
   private mapa: L.Map | null = null;
   private circulos: { [id: string]: L.CircleMarker } = {};
 
@@ -49,7 +48,6 @@ export class Cobertura implements OnInit, OnDestroy {
     this.mapa?.remove();
   }
 
-  // Nodos del grafo = círculos; aristas (lista de adyacencia) = líneas
   private dibujar(): void {
     this.mapa = L.map('mapa-cobertura').setView([3.43, -76.535], 12);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -60,7 +58,6 @@ export class Cobertura implements OnInit, OnDestroy {
     for (let id in this.grafo.adjList) {
       const origen = this.grafo.searchNode(id)!;
       for (let vecinoId of this.grafo.adjList[id]) {
-        // Cada arista aparece dos veces (no dirigido): se dibuja solo una
         if (Number(id) < Number(vecinoId)) {
           const destino = this.grafo.searchNode(vecinoId)!;
           L.polyline([[origen.lat, origen.lng], [destino.lat, destino.lng]], { color: '#8a949c', weight: 2, dashArray: '4 6' })

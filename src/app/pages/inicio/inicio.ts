@@ -38,7 +38,6 @@ export class Inicio implements OnInit {
   mensaje = signal('');
 
   constructor() {
-    // Cuando llega el perfil del cliente, se usa su barrio por defecto
     effect(() => {
       const perfil = this.auth.perfil();
       if (perfil && perfil.barrio_id && this.barrioId() === 0) {
@@ -48,7 +47,6 @@ export class Inicio implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    // Las cuatro consultas en paralelo (Promise.all, Clase 13)
     const [barrios, vecinos, restaurantes, platos] = await Promise.all([
       this.barriosServicio.listar(),
       this.catalogo.listarVecinos(),
@@ -65,7 +63,6 @@ export class Inicio implements OnInit {
     this.barrios.set(barrios.data);
     this.restaurantes.set(restaurantes.data);
 
-    // Grafo de barrios
     for (let barrio of barrios.data) {
       this.grafo.addNode(barrio);
     }
@@ -73,7 +70,6 @@ export class Inicio implements OnInit {
       this.grafo.addEdge(String(arista.barrio_a), String(arista.barrio_b));
     }
 
-    // Trie: cada palabra del nombre de restaurantes y platos
     for (let restaurante of restaurantes.data as Restaurante[]) {
       const resultado: ResultadoBusqueda = {
         tipo: 'restaurante', texto: restaurante.nombre, detalle: restaurante.tipo, restauranteId: restaurante.id,
@@ -91,7 +87,6 @@ export class Inicio implements OnInit {
       }
     }
 
-    // Max Heap: Top 5 de los platos que ya se han pedido
     const heap = new MaxHeap();
     for (let plato of platos.data as Plato[]) {
       if (plato.veces_pedido > 0) {

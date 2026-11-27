@@ -25,7 +25,6 @@ export class FormPlato {
   mensaje = signal('');
 
   constructor() {
-    // effect() en lugar de ngOnChanges (Clase 9): llena el formulario al elegir un plato para editar
     effect(() => {
       const plato = this.editar();
       this.nombre.set(plato ? plato.nombre : '');

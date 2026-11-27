@@ -27,7 +27,6 @@ export class TarjetaPlato {
       return;
     }
 
-    // El carrito solo admite platos de un restaurante, como en las apps reales
     const actual = this.carrito.restauranteId();
     if (actual !== null && actual !== this.plato.restaurante_id) {
       if (!confirm('Tu carrito tiene platos de otro restaurante. ¿Lo vaciamos y empezamos aquí?')) {

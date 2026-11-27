@@ -17,14 +17,12 @@ export class Carrito {
   private lista = new ListaCarrito();
   private pila = new Pila<AccionCarrito>();
 
-  // Copias para la plantilla; se actualizan después de cada cambio
   items = signal<ItemCarrito[]>([]);
   total = signal(0);
   cantidadTotal = signal(0);
   puedeDeshacer = signal(false);
 
   constructor() {
-    // El carrito guardado se carga cuando entra un cliente y se limpia al salir
     effect(() => {
       const perfil = this.auth.perfil();
       if (perfil && perfil.rol === 'cliente') {
@@ -68,7 +66,6 @@ export class Carrito {
     return this.lista.head ? this.lista.head.value.plato.restaurante_id : null;
   }
 
-  // Devuelve '' si todo salió bien, o un texto de error
   async agregar(plato: Plato): Promise<string> {
     const nodo = this.lista.buscar(plato.id);
 
@@ -140,7 +137,6 @@ export class Carrito {
     return '';
   }
 
-  // Saca la última acción de la pila y aplica la contraria (sin volver a apilar)
   async deshacer(): Promise<string> {
     const accion = this.pila.pop();
 

@@ -1,7 +1,6 @@
 import { NodoCarrito } from './nodo-carrito';
 import { ItemCarrito } from './item-carrito';
 
-// Lista simplemente enlazada del carrito (append igual al challenge de listas)
 export class ListaCarrito {
   head: NodoCarrito | null = null;
   tail: NodoCarrito | null = null;
@@ -22,7 +21,6 @@ export class ListaCarrito {
     this.length++;
   }
 
-  // Recorre desde la cabeza hasta encontrar el plato
   buscar(platoId: number): NodoCarrito | null {
     let actual = this.head;
 
@@ -36,7 +34,6 @@ export class ListaCarrito {
     return null;
   }
 
-  // Quita el nodo enlazando el anterior con el siguiente
   eliminar(platoId: number): boolean {
     if (!this.head) {
       return false;
@@ -82,7 +79,6 @@ export class ListaCarrito {
     return suma;
   }
 
-  // Para pintar la lista en la plantilla con @for
   aArreglo(): ItemCarrito[] {
     const items: ItemCarrito[] = [];
     let actual = this.head;

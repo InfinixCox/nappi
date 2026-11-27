@@ -1,4 +1,3 @@
-// Pila (LIFO): el último que entra es el primero que sale
 export class Pila<T> {
   items: T[] = [];
 

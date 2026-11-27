@@ -16,7 +16,6 @@ import { TarjetaPlato } from '../../components/tarjeta-plato/tarjeta-plato';
   styleUrl: './restaurante.scss',
 })
 export class Restaurante implements OnInit {
-  // /ruta/2 -> id() = '2' (rutas dinámicas con input(), Clase 8)
   id = input<string>();
   catalogo = inject(Catalogo);
 

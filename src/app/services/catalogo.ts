@@ -31,7 +31,6 @@ export class Catalogo {
     return this.sb.from('barrios_vecinos').select('*');
   }
 
-  // URL pública de una imagen del bucket (como el avatar del Challenge 10)
   urlImagen(ruta: string): string {
     return this.sb.storage.from('imagenes').getPublicUrl(ruta).data.publicUrl;
   }
@@ -40,7 +39,6 @@ export class Catalogo {
     return '$ ' + valor.toLocaleString('es-CO');
   }
 
-  // ===== Panel del restaurante: su menú =====
   listarPlatosPanel(restauranteId: number) {
     return this.sb.from('platos').select('*').eq('restaurante_id', restauranteId).order('nombre');
   }
@@ -57,7 +55,6 @@ export class Catalogo {
     return this.sb.from('platos').update(datos).eq('id', id);
   }
 
-  // Igual a la subida del avatar del Challenge 10: carpeta del restaurante + Date.now()
   async subirImagen(slug: string, archivo: File): Promise<{ ruta: string; error: string }> {
     if (!archivo.type.startsWith('image/')) {
       return { ruta: '', error: 'Solo se permiten imágenes.' };

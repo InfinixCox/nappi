@@ -32,7 +32,6 @@ export class MisPedidos implements OnInit, OnDestroy {
 
     this.cargando.set(false);
 
-    // Tiempo real: el estado cambia apenas el restaurante lo avanza
     const { data: sesion } = await this.auth.obtenerSesion();
     if (sesion.session) {
       this.canal = this.pedidosServicio.escuchar('cliente_id=eq.' + sesion.session.user.id, (payload) => {

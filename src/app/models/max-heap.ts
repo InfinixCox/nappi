@@ -1,6 +1,5 @@
 import { Plato } from './plato';
 
-// Igual al MaxHeap del Parcial 03, comparando por veces_pedido
 export class MaxHeap {
   heap: Plato[];
 

@@ -50,7 +50,6 @@
 }
 
 @media (max-width: 700px) {
-  // Si el título es largo, el total baja completo a otra línea
   .cabecera {
     flex-wrap: wrap;
     gap: 8px;

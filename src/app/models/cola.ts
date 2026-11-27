@@ -1,4 +1,3 @@
-// Cola (FIFO): el primero que llega es el primero que se atiende (como el cajero del Challenge 05)
 export class Cola<T> {
   items: T[] = [];
 

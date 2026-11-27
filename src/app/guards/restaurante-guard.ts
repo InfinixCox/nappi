@@ -2,7 +2,6 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { Auth } from '../services/auth';
 
-// Rutas solo para cuentas de restaurante (panel)
 export const restauranteGuard: CanActivateFn = async () => {
   const auth = inject(Auth);
   const router = inject(Router);

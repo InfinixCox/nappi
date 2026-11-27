@@ -73,7 +73,6 @@ export class Registro implements OnInit {
       return;
     }
 
-    // Después de crear el usuario se guarda su perfil (nombre y barrio)
     const { error: errorPerfil } = await this.auth.crearPerfil(data.user.id, this.nombre().trim(), this.barrioId());
 
     if (errorPerfil) {

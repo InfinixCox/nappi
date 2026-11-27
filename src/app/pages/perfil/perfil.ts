@@ -21,11 +21,9 @@ export class Perfil implements OnInit {
   tipoMensaje = signal<'error' | 'exito'>('error');
   pendiente = signal(false);
 
-  // Para llenar el formulario una sola vez y no borrar lo que el usuario escribe
   private formularioLleno = false;
 
   constructor() {
-    // Igual que en Inicio: el perfil puede llegar después de abrir la página
     effect(() => {
       const perfil = this.auth.perfil();
       if (perfil && !this.formularioLleno) {
@@ -77,7 +75,6 @@ export class Perfil implements OnInit {
       return;
     }
 
-    // Así la barra y el Inicio ven el nombre y el barrio nuevos sin recargar
     await this.auth.cargarPerfil();
 
     this.tipoMensaje.set('exito');

@@ -4,7 +4,6 @@ export class NodoTrie {
   value: string | null;
   isEndOfWord: boolean;
   children: { [letra: string]: NodoTrie };
-  // Adaptación: varias cosas pueden terminar en la misma palabra ("la", "pollo"...)
   resultados: ResultadoBusqueda[];
 
   constructor(value: string | null) {

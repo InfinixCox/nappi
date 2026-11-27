@@ -43,7 +43,6 @@ export class PanelMenu implements OnInit {
     await this.recargar();
   }
 
-  // Vuelve a armar el árbol n-ario del menú con lo que hay en la base de datos
   async recargar(): Promise<void> {
     const restaurante = this.restaurante();
     if (!restaurante) return;
@@ -61,7 +60,6 @@ export class PanelMenu implements OnInit {
     return this.categorias().filter(c => c.padre_id === null);
   }
 
-  // Nodos de categoría en orden: principal y luego sus subcategorías (recorrido DFS)
   nodosEnOrden(): { nodo: NodoMenu; nivel: number }[] {
     const lista: { nodo: NodoMenu; nivel: number }[] = [];
     const recorrer = (nodo: NodoMenu, nivel: number) => {
@@ -134,7 +132,6 @@ export class PanelMenu implements OnInit {
     await this.recargar();
   }
 
-  // Los platos no se borran (pueden estar en pedidos viejos): se ocultan de la carta
   async cambiarDisponible(plato: Plato): Promise<void> {
     const { error } = await this.catalogo.actualizarPlato(plato.id, { disponible: !plato.disponible });
     if (error) {

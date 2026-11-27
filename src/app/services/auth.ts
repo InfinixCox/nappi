@@ -20,8 +20,6 @@ export class Auth {
 
     this.sb.auth.onAuthStateChange((_evento, s) => {
       this.session.set(s);
-      // Supabase recomienda no hacer consultas dentro de este callback,
-      // por eso el perfil se carga justo después con setTimeout.
       setTimeout(() => this.cargarPerfil(), 0);
     });
   }
@@ -43,7 +41,6 @@ export class Auth {
     this.perfil.set(data);
   }
 
-  // Lo usan los guards: consulta el rol directamente en la base de datos
   async obtenerRol(): Promise<'cliente' | 'restaurante' | null> {
     const { data } = await this.sb.auth.getSession();
 
@@ -72,7 +69,6 @@ export class Auth {
     return this.sb.from('profiles').insert({ id: id, nombre: nombre, barrio_id: barrioId });
   }
 
-  // Lo usa Mi perfil; las políticas RLS no dejan cambiar el rol
   actualizarPerfil(id: string, nombre: string, barrioId: number) {
     return this.sb.from('profiles').update({ nombre: nombre, barrio_id: barrioId }).eq('id', id);
   }

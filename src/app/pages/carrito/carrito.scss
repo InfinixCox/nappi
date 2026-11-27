@@ -97,7 +97,6 @@ h1 { color: $color-principal; }
       height: 45px;
     }
 
-    // El subtotal baja a la segunda fila, debajo del nombre, y "Quitar" queda a la derecha
     li > strong { grid-column: 2; }
   }
 

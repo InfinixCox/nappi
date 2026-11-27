@@ -41,7 +41,6 @@ export class PanelPedidos implements OnInit, OnDestroy {
       this.mensaje.set('No pudimos traer los pedidos: ' + error.message);
     }
 
-    // Los pendientes entran a la cola en orden de llegada
     const activos = (data ?? []) as Pedido[];
     for (let pedido of activos) {
       if (pedido.estado === 'pendiente') {
@@ -52,7 +51,6 @@ export class PanelPedidos implements OnInit, OnDestroy {
     this.refrescarCola();
     this.cargando.set(false);
 
-    // Tiempo real: cada pedido nuevo se encola al final
     this.canal = this.pedidos.escuchar('restaurante_id=eq.' + restaurante.id, (payload) => {
       if (payload.eventType === 'INSERT') {
         this.encolarNuevo(payload.new.id);
@@ -72,7 +70,6 @@ export class PanelPedidos implements OnInit, OnDestroy {
   }
 
   private async encolarNuevo(id: number): Promise<void> {
-    // Los items se insertan justo después del pedido; se espera un momento antes de leerlos
     await new Promise(resolver => setTimeout(resolver, 800));
     const { data } = await this.pedidos.obtener(id);
     if (data) {
@@ -106,7 +103,6 @@ export class PanelPedidos implements OnInit, OnDestroy {
     return pedido.progreso >= 75 ? 'Marcar entregado' : 'Avanzar domiciliario';
   }
 
-  // en_cocina -> en_camino (0%) -> +25% ... -> 100% = entregado
   async avanzar(pedido: Pedido): Promise<void> {
     let estado = pedido.estado;
     let progreso = pedido.progreso;

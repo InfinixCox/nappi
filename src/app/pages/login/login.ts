@@ -41,7 +41,6 @@ export class Login {
       return;
     }
 
-    // Cada rol tiene su página de inicio
     const rol = await this.auth.obtenerRol();
     await this.router.navigate([rol === 'restaurante' ? '/panel' : '/']);
     this.pendiente.set(false);

@@ -1,6 +1,5 @@
 import { Barrio } from './barrio';
 
-// Grafo no dirigido de barrios: igual al del Challenge 11 (lista de adyacencia)
 export class Grafo {
   nodes: Barrio[];
   adjList: { [id: string]: string[] };
@@ -36,7 +35,6 @@ export class Grafo {
     return this.nodes.find(n => String(n.id) === id);
   }
 
-  // Cobertura: el barrio y sus vecinos directos (como personasDeCiudad del Challenge 11)
   barriosConCobertura(id: string): string[] {
     const vecinos = this.adjList[id];
 
