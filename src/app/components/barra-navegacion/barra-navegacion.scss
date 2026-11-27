@@ -1,0 +1,92 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.barra {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: $espacio;
+  padding: $espacio * 0.75 $espacio * 1.5;
+  background-color: $color-principal;
+  color: white;
+}
+
+.marca {
+  display: flex;
+  flex-direction: column;
+  justify-self: start;
+  color: white;
+  text-decoration: none;
+
+  .logo {
+    font-family: $fuente-titulos;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .enie {
+    color: $color-acento;
+  }
+
+  .lema {
+    font-size: 0.75rem;
+    opacity: 0.85;
+  }
+}
+
+nav {
+  display: flex;
+  gap: $espacio * 1.5;
+
+  a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.85;
+
+    &.activo {
+      opacity: 1;
+      font-weight: bold;
+      border-bottom: 2px solid $color-acento;
+    }
+  }
+}
+
+.derecha {
+  display: flex;
+  align-items: center;
+  gap: $espacio;
+  justify-self: end;
+}
+
+.usuario {
+  font-size: 0.9rem;
+}
+
+.boton-salir {
+  @include boton(transparent);
+  border-color: white;
+}
+
+.enlace-entrar {
+  color: white;
+  text-decoration: none;
+}
+
+.boton-registro {
+  @include boton($color-acento, $color-acento-texto);
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+  .barra {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .marca,
+  .derecha {
+    justify-self: center;
+    align-items: center;
+  }
+}

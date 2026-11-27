@@ -1,0 +1,12 @@
+<section class="pagina">
+  <div class="bienvenida">
+    <h1>
+      @if (auth.perfil()) {
+        ¿Qué se te antoja hoy, {{ auth.perfil()?.nombre }}?
+      } @else {
+        ¿Qué se te antoja hoy?
+      }
+    </h1>
+    <p>Domicilios en Cali. Siempre con ñapa.</p>
+  </div>
+</section>

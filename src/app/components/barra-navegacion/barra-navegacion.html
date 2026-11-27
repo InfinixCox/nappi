@@ -1,0 +1,28 @@
+<header class="barra">
+  <a routerLink="/" class="marca">
+    <span class="logo"><span class="enie">Ñ</span>appi</span>
+    <span class="lema">Siempre con ñapa</span>
+  </a>
+
+  <nav>
+    <a routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+
+    @if (auth.perfil()?.rol === 'cliente') {
+      <a routerLink="/pedidos" routerLinkActive="activo">Mis pedidos</a>
+    }
+
+    @if (auth.perfil()?.rol === 'restaurante') {
+      <a routerLink="/panel" routerLinkActive="activo">Panel</a>
+    }
+  </nav>
+
+  <div class="derecha">
+    @if (auth.session()) {
+      <span class="usuario">{{ auth.perfil()?.nombre }}</span>
+      <button class="boton-salir" (click)="salir()">Salir</button>
+    } @else {
+      <a routerLink="/login" class="enlace-entrar">Entrar</a>
+      <a routerLink="/registro" class="boton-registro">Crear cuenta</a>
+    }
+  </div>
+</header>

@@ -1,0 +1,26 @@
+<section class="pagina">
+  <h1>Mis pedidos</h1>
+
+  @if (mensaje() !== '') {
+    <p class="aviso-error">{{ mensaje() }}</p>
+  }
+
+  @if (cargando()) {
+    <p class="vacio">Buscando tus pedidos...</p>
+  } @else {
+    <ul class="lista-pedidos">
+      @for (pedido of pedidos(); track pedido.id) {
+        <li>
+          <div>
+            <strong>{{ pedido.restaurantes?.nombre }}</strong>
+            <span class="fecha">{{ pedido.created_at | date: 'dd/MM/yyyy h:mm a' }}</span>
+          </div>
+          <span class="estado" [class]="'estado ' + pedido.estado">{{ textoEstado(pedido.estado) }}</span>
+          <span class="total">{{ formatoPrecio(pedido.total) }}</span>
+        </li>
+      } @empty {
+        <li class="vacio">Todavía no has pedido nada. Tu estómago merece más.</li>
+      }
+    </ul>
+  }
+</section>

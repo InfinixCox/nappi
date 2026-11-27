@@ -1,0 +1,16 @@
+@use '../../../styles/variables' as *;
+
+.perdido {
+  text-align: center;
+
+  h1 {
+    margin-bottom: 0;
+    color: $color-principal;
+    font-size: 4rem;
+  }
+
+  a {
+    display: inline-block;
+    text-decoration: none;
+  }
+}

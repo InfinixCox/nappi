@@ -1,0 +1,46 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+h1 {
+  color: $color-principal;
+}
+
+.lista-pedidos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: $espacio;
+    margin-bottom: $espacio * 0.75;
+    padding: $espacio;
+    background-color: white;
+    border: 1px solid $color-borde;
+    border-radius: $radio;
+
+    &.vacio {
+      display: block;
+    }
+  }
+}
+
+.fecha {
+  display: block;
+  color: $color-tenue;
+  font-size: 0.85rem;
+}
+
+.estado {
+  @include chip($color-borde, $color-texto);
+
+  &.en_cocina { @include chip($color-acento, $color-acento-texto); }
+  &.en_camino { @include chip($color-foco, $color-principal); }
+  &.entregado { @include chip($color-principal, white); }
+}
+
+.total {
+  font-weight: bold;
+}

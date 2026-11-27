@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+@use 'styles/acceso';
+
+body {
+  margin: 0;
+  background-color: $color-fondo;
+  color: $color-texto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $fuente-titulos;
+}
+
+input[type='email'],
+input[type='password'],
+input[type='text'],
+input[type='number'],
+select,
+textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+  box-sizing: border-box;
+  background-color: white;
+  font-size: 0.95rem;
+
+  &:focus {
+    outline: 2px solid $color-foco;
+    border-color: $color-principal;
+  }
+}
+
+.boton-principal { @include boton($color-principal); }
+.boton-compra { @include boton($color-acento, $color-acento-texto); }
+.boton-secundario { @include boton($color-secundario); }
+.boton-peligro { @include boton($color-peligro); }
+.aviso-error { @include aviso($color-peligro, $color-error-fondo); }
+.aviso-exito { @include aviso($color-principal, $color-exito-fondo); }
+
+.pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $espacio * 1.5 $espacio;
+}
+
+.vacio {
+  color: $color-tenue;
+  text-align: center;
+}
