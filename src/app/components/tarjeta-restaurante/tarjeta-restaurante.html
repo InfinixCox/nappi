@@ -1,0 +1,14 @@
+<a class="tarjeta" [class.lejos]="!entrega" [routerLink]="['/restaurante', restaurante.id]">
+  <img class="portada" [src]="catalogo.urlImagen(restaurante.portada_path)" [alt]="restaurante.nombre">
+  <img class="logo" [src]="catalogo.urlImagen(restaurante.logo_path)" alt="">
+  <div class="info">
+    <h3>{{ restaurante.nombre }}</h3>
+    <p class="tipo">{{ restaurante.tipo }} · {{ restaurante.tiempo_min }} min</p>
+    <p class="eslogan">{{ restaurante.eslogan }}</p>
+    @if (entrega) {
+      <span class="chip-entrega">Te entrega</span>
+    } @else {
+      <span class="chip-lejos">No llega a tu barrio</span>
+    }
+  </div>
+</a>

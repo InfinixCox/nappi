@@ -1,0 +1,44 @@
+<section class="pagina">
+  <a routerLink="/" class="volver">← Volver</a>
+
+  @if (mensaje() !== '') {
+    <p class="aviso-error">{{ mensaje() }}</p>
+  }
+
+  @if (cargando()) {
+    <p class="vacio">Leyendo la carta...</p>
+  }
+
+  @if (restaurante(); as r) {
+    <header class="cabecera" [style.background-image]="'url(' + catalogo.urlImagen(r.portada_path) + ')'">
+      <div class="velo">
+        <img class="logo" [src]="catalogo.urlImagen(r.logo_path)" alt="">
+        <div>
+          <h1>{{ r.nombre }}</h1>
+          <p>{{ r.tipo }} · {{ r.tiempo_min }} min · <em>{{ r.eslogan }}</em></p>
+        </div>
+      </div>
+    </header>
+
+    <app-filtro-precio (filtrar)="aplicarFiltro($event)" (limpiar)="quitarFiltro()" />
+
+    @if (filtrados(); as lista) {
+      <h2 class="titulo-filtro">Platos entre {{ rangoTexto() }}, de menor a mayor</h2>
+      <div class="grilla">
+        @for (plato of lista; track plato.id) {
+          <app-tarjeta-plato [plato]="plato" />
+        } @empty {
+          <p class="vacio">Nada en ese rango. Ajusta el presupuesto (o el antojo).</p>
+        }
+      </div>
+    } @else {
+      @if (arbol(); as menu) {
+        <div class="menu">
+          @for (categoria of menu.raiz.hijos; track categoria) {
+            <app-nodo-menu-vista [nodo]="categoria" />
+          }
+        </div>
+      }
+    }
+  }
+</section>

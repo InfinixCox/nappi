@@ -1,0 +1,19 @@
+<section class="categoria" [class.subcategoria]="nivel > 1">
+  @if (nivel === 1) {
+    <h2>{{ nodo.titulo }}</h2>
+  } @else {
+    <h3>{{ nodo.titulo }}</h3>
+  }
+
+  @if (nodo.platos.length > 0) {
+    <div class="grilla">
+      @for (plato of nodo.platos; track plato.id) {
+        <app-tarjeta-plato [plato]="plato" />
+      }
+    </div>
+  }
+
+  @for (hijo of nodo.hijos; track hijo) {
+    <app-nodo-menu-vista [nodo]="hijo" [nivel]="nivel + 1" />
+  }
+</section>

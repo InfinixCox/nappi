@@ -1,0 +1,39 @@
+@use '../../../styles/variables' as *;
+
+.plato {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+}
+
+img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 10px 12px;
+
+  h4 {
+    margin: 0 0 4px;
+  }
+
+  p {
+    flex: 1;
+    margin: 0 0 8px;
+    color: $color-secundario;
+    font-size: 0.85rem;
+  }
+}
+
+.precio {
+  color: $color-principal;
+}

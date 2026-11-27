@@ -1,0 +1,65 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.tarjeta {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+  color: $color-texto;
+  text-decoration: none;
+  transition: transform 0.15s;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &.lejos {
+    opacity: 0.6;
+  }
+}
+
+.portada {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.logo {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 56px;
+  height: 56px;
+  border: 3px solid white;
+  border-radius: 50%;
+}
+
+.info {
+  padding: $espacio * 0.75 $espacio;
+
+  h3 {
+    margin: 0;
+    color: $color-principal;
+  }
+
+  p {
+    margin: 4px 0;
+  }
+}
+
+.tipo {
+  color: $color-tenue;
+  font-size: 0.85rem;
+}
+
+.eslogan {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.chip-entrega { @include chip($color-exito-fondo, $color-principal); }
+.chip-lejos { @include chip($color-borde, $color-secundario); }

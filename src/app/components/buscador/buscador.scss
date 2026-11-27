@@ -1,0 +1,54 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.buscador {
+  position: relative;
+
+  input {
+    padding: 12px 14px;
+    font-size: 1rem;
+  }
+}
+
+.resultados {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  max-height: 320px;
+  margin: 4px 0 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+  background-color: white;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+
+  li {
+    border-bottom: 1px solid $color-borde;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    color: $color-texto;
+    text-decoration: none;
+
+    &:hover {
+      background-color: $color-fondo;
+    }
+  }
+
+  .vacio {
+    padding: 10px 14px;
+  }
+}
+
+.tipo { @include chip($color-exito-fondo, $color-principal); }
+
+.detalle {
+  margin-left: auto;
+  color: $color-tenue;
+  font-size: 0.85rem;
+}

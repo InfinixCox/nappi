@@ -1,0 +1,63 @@
+@use '../../../styles/variables' as *;
+
+.volver {
+  display: inline-block;
+  margin-bottom: $espacio;
+  color: $color-principal;
+  text-decoration: none;
+}
+
+.cabecera {
+  overflow: hidden;
+  margin-bottom: $espacio;
+  border-radius: $radio;
+  background-size: cover;
+  background-position: center;
+}
+
+.velo {
+  display: flex;
+  align-items: center;
+  gap: $espacio;
+  min-height: 200px;
+  padding: $espacio * 1.5;
+  box-sizing: border-box;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1));
+  color: white;
+
+  h1 {
+    margin: 0;
+  }
+
+  p {
+    margin: 4px 0 0;
+  }
+}
+
+.logo {
+  align-self: flex-end;
+  width: 84px;
+  height: 84px;
+  border: 3px solid white;
+  border-radius: 50%;
+}
+
+.velo > div {
+  align-self: flex-end;
+}
+
+.menu,
+.titulo-filtro {
+  margin-top: $espacio * 1.5;
+}
+
+.titulo-filtro {
+  color: $color-principal;
+  font-size: 1.1rem;
+}
+
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $espacio;
+}

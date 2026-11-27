@@ -1,0 +1,20 @@
+<section class="top">
+  <h2>Top 5: lo que más piden en Ñappi</h2>
+
+  <ol>
+    @for (plato of platos; track plato.id; let i = $index) {
+      <li>
+        <a [routerLink]="['/restaurante', plato.restaurante_id]">
+          <span class="puesto">{{ i + 1 }}</span>
+          <img [src]="catalogo.urlImagen(plato.imagen_path)" [alt]="plato.nombre">
+          <span class="nombre">
+            <strong>{{ plato.nombre }}</strong>
+            <small>{{ plato.restaurantes?.nombre }} · {{ plato.veces_pedido }} pedidos</small>
+          </span>
+        </a>
+      </li>
+    } @empty {
+      <li class="vacio">Nadie ha pedido todavía. Sé el primero y entra a la historia.</li>
+    }
+  </ol>
+</section>

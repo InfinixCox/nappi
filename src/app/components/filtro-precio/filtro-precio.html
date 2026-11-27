@@ -1,0 +1,13 @@
+<form class="filtro" (ngSubmit)="aplicar()">
+  <span class="titulo">Filtrar por precio</span>
+  <input type="number" name="min" placeholder="Mínimo" min="0" step="1000"
+    [ngModel]="min()" (ngModelChange)="min.set($event)">
+  <input type="number" name="max" placeholder="Máximo" min="0" step="1000"
+    [ngModel]="max()" (ngModelChange)="max.set($event)">
+  <button type="submit" class="boton-principal">Filtrar</button>
+  <button type="button" class="boton-secundario" (click)="quitar()">Quitar</button>
+</form>
+
+@if (mensaje() !== '') {
+  <p class="aviso-error">{{ mensaje() }}</p>
+}

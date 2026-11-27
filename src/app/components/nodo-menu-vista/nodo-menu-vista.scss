@@ -1,0 +1,28 @@
+@use '../../../styles/variables' as *;
+
+.categoria {
+  margin-bottom: $espacio * 1.5;
+
+  h2 {
+    margin: 0 0 $espacio * 0.5;
+    color: $color-principal;
+  }
+
+  h3 {
+    margin: 0 0 $espacio * 0.5;
+    color: $color-secundario;
+    font-size: 1rem;
+  }
+}
+
+.subcategoria {
+  padding-left: $espacio * 0.75;
+  border-left: 3px solid $color-acento;
+}
+
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $espacio;
+  margin-bottom: $espacio;
+}

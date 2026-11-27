@@ -1,6 +1,7 @@
 @use '../../../styles/variables' as *;
 
 .bienvenida {
+  margin-bottom: $espacio * 1.5;
   padding: $espacio * 2;
   border-radius: $radio;
   background-color: $color-principal;
@@ -11,7 +12,43 @@
   }
 
   p {
-    margin: 0;
+    margin: 0 0 $espacio;
     opacity: 0.9;
+  }
+}
+
+.distribucion {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  align-items: start;
+  gap: $espacio * 1.5;
+}
+
+.selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 360px;
+
+  label {
+    font-weight: bold;
+    white-space: nowrap;
+  }
+}
+
+h2 {
+  color: $color-principal;
+  font-size: 1.2rem;
+}
+
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: $espacio;
+}
+
+@media (max-width: 900px) {
+  .distribucion {
+    grid-template-columns: 1fr;
   }
 }

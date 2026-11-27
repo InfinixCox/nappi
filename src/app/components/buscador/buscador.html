@@ -1,0 +1,24 @@
+<div class="buscador">
+  <input
+    type="text"
+    placeholder="Busca platos o restaurantes: pizza, sancocho, roll..."
+    [value]="texto"
+    (input)="buscar.emit($any($event.target).value)"
+  >
+
+  @if (texto.trim() !== '') {
+    <ul class="resultados">
+      @for (item of resultados; track item) {
+        <li>
+          <a [routerLink]="['/restaurante', item.restauranteId]">
+            <span class="tipo">{{ item.tipo === 'plato' ? 'Plato' : 'Restaurante' }}</span>
+            <strong>{{ item.texto }}</strong>
+            <span class="detalle">{{ item.detalle }}</span>
+          </a>
+        </li>
+      } @empty {
+        <li class="vacio">Nada con "{{ texto }}". ¿Y si pruebas con algo que exista?</li>
+      }
+    </ul>
+  }
+</div>
